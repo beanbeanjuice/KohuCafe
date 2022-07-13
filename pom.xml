@@ -110,6 +110,13 @@
             <version>3.3.0</version>
         </dependency>
 
+        <!-- Café API -->
+        <dependency>
+            <groupId>io.github.beanbeanjuice</groupId>
+            <artifactId>cafe-api-wrapper</artifactId>
+            <version>v1.2.3-SNAPSHOT</version>
+        </dependency>
+
         <!-- Discord JDA -->
         <dependency>
             <groupId>net.dv8tion</groupId>
@@ -144,6 +151,13 @@
             <groupId>com.github.twitch4j</groupId>
             <artifactId>twitch4j</artifactId>
             <version>1.10.0</version>
+        </dependency>
+
+        <!-- Dotenv for Environment Variables -->
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>dotenv-java</artifactId>
+            <version>2.2.4</version>
         </dependency>
     </dependencies>
 
