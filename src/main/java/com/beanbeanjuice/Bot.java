@@ -17,6 +17,12 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.security.auth.login.LoginException;
 
+/**
+ * The main {@link JDA bot} class.
+ *
+ * @author beanbeanjuice
+ * @since v1.0.0
+ */
 public class Bot {
 
     private static final Dotenv DOT_ENV = Dotenv.configure().load();
