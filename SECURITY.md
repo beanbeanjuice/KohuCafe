@@ -6,10 +6,7 @@ Currently, only the latest version will **ever** be supported as any outdated ve
 
 | Version  | Supported          |
 | -------  | ------------------ |
-| v 3.x.x  | :white_check_mark: |
-| < v3.0.0 | :x:                |
-| < v2.0.0 | :x:                |
-| < v1.0.0 | :x:                |
+| v 1.0.0  | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
