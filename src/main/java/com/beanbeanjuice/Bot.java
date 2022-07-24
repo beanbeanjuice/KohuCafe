@@ -1,5 +1,7 @@
 package com.beanbeanjuice;
 
+import com.beanbeanjuice.utility.command.CommandHandler;
+import com.beanbeanjuice.utility.jdalisteners.MessageListener;
 import com.beanbeanjuice.utility.logging.LogLevel;
 import com.beanbeanjuice.utility.logging.LogManager;
 import io.github.cdimascio.dotenv.Dotenv;
@@ -16,6 +18,7 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import org.jetbrains.annotations.NotNull;
 
 import javax.security.auth.login.LoginException;
+import java.util.TimeZone;
 
 /**
  * The main {@link JDA bot} class.
@@ -40,10 +43,13 @@ public class Bot {
     private static Guild homeGuild;
     private static TextChannel homeGuildLogChannel;
 
+    private static CommandHandler commandHandler;
+
     public static int commandsRun = 0;
     public static final String DISCORD_AVATAR_URL = "https://cdn.beanbeanjuice.com/images/cafeBot/cafeBot.gif";  // TODO: Change this later
 
     public static void main(String[] args) throws LoginException, InterruptedException {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
         logger = new LogManager("cafeBot Logging System", homeGuildLogChannel, "logs/");
         logger.addWebhookURL(WEBHOOK_URL);
         logger.log(Bot.class, LogLevel.OKAY, "Starting bot!", true, false);
@@ -68,8 +74,16 @@ public class Bot {
         homeGuildLogChannel = homeGuild.getTextChannelById(LOG_CHANNEL_ID);
 
         // Log "Adding Commands"
+        logger.log(Bot.class, LogLevel.INFO, "Adding Commands...");
+
         // Start new command handler
-        // Add event listeners
+        commandHandler = new CommandHandler(bot);
+
+        // Add event listeners.
+        bot.addEventListener(
+                commandHandler,
+                new MessageListener()
+        );
 
         logger.setLogChannel(homeGuildLogChannel);
         logger.log(Bot.class, LogLevel.INFO, "Enabled Discord Logging...", true, true);
@@ -102,6 +116,14 @@ public class Bot {
      */
     public static void updateGuildPresence() {
         bot.getPresence().setActivity(Activity.playing("KohuCafe " + BOT_VERSION + " - Currently in " + bot.getGuilds().size() + " servers!"));
+    }
+
+    /**
+     * @return The current {@link CommandHandler}.
+     */
+    @NotNull
+    public static CommandHandler getCommandHandler() {
+        return commandHandler;
     }
 
 }
