@@ -6,7 +6,10 @@ users
   \- 690927484199370753
     \- avatar_image.jpg
     \- information.json
-      \- Balance, items, etc
+      \- Balance, etc
+    \- stats.json
+      \- health points, strength, etc
+    \- items.json
 
 moderation
   \- warns
