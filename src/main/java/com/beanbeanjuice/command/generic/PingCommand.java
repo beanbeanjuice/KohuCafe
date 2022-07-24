@@ -28,9 +28,8 @@ public class PingCommand implements ICommand {
                 (ping) -> event.getHook().sendMessageEmbeds(messageEmbed(ping, Bot.getBot().getGatewayPing())).queue()
         );
 
-        if (event.getOption("any_string") != null) {
+        if (event.getOption("any_string") != null)
             event.getHook().sendMessage(event.getOption("any_string").getAsString()).queue();
-        }
     }
 
     @NotNull
